@@ -1211,7 +1211,7 @@ darwinssl_connect_step2(struct connectdata *conn, int sockindex)
     SecTrustRef newTrust;
     OSStatus copy_trust_err = SSLCopyPeerTrust(ssl_ctx, &newTrust);
     if(copy_trust_err == noErr) {
-      SecTrustRef *sessionTrust = &data->info.ssl_trust;
+      SecTrustRef *sessionTrust = (SecTrustRef *)&data->info.ssl_trust;
       if(*sessionTrust != NULL) {
         data->info.free_ssl_trust(*sessionTrust);
       }
